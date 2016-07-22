@@ -1,0 +1,130 @@
+<html>
+<!-- Graph Planner
+Something to disentangle things! 
+By Omid Alemi
+-->
+
+<head>
+  <script type="text/javascript" src="bower_components/cytoscape/dist/cytoscape.js"></script>
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+
+  <style>
+    #cy {
+      width: 90%;
+      height: 90%;
+      display: block;
+    }
+  </style>
+
+</head>
+
+
+<body>
+
+  <div id="cy">
+  </div>
+
+  <textarea id="graphedit" cols="50" rows="3"></textarea>
+
+  <script type="text/javascript">
+    var cy = cytoscape({
+      container: $('#cy'),
+      elements: [ // list of graph elements to start with
+        { // node a
+          data: {
+            id: 'a'
+          }
+        }, { // node b
+          data: {
+            id: 'b'
+          }
+        }, { // edge ab
+          data: {
+            id: 'ab',
+            source: 'a',
+            target: 'b'
+          }
+        }
+      ],
+
+      style: [ // the stylesheet for the graph
+        {
+          selector: 'node',
+          style: {
+            'background-color': '#666',
+            'label': 'data(id)'
+          }
+        },
+
+        {
+          selector: 'edge',
+          style: {
+            'width': 3,
+            'line-color': '#ccc',
+            'target-arrow-color': '#ccc',
+            'target-arrow-shape': 'triangle'
+          }
+        }
+      ],
+
+      layout: {
+        name: 'grid',
+        rows: 5
+      }
+    });
+  </script>
+
+  <script>
+    function addPair(nodeA, nodeB) {
+      console.log(nodeA);
+      if (cy.getElementById(nodeA).length == 0)
+        cy.add({
+          nodes: [{
+            data: {
+              id: nodeA
+            }
+          }]
+        });
+      if (cy.getElementById(nodeB).length == 0)
+        cy.add({
+          nodes: [{
+            data: {
+              id: nodeB
+            }
+          }]
+        });
+
+      cy.add({
+        edges: [{
+          data: {
+            id: nodeA + '_' + nodeB,
+            source: nodeA,
+            target: nodeB
+          }
+        }]
+      });
+    }
+
+    function saveGraph() {
+      var data = "text/json;charset=utf-8," +
+        encodeURIComponent(JSON.stringify(cy.json().elements));
+      document.getElementById('graphedit').value = data;
+      var a = document.createElement('a');
+      a.href = 'data:' + data;
+      a.download = 'data.json';
+      a.innerHTML = 'download JSON';
+      a.click();
+    }
+
+    function loadGraph() {
+      var e = JSON.parse(document.getElementById('graphedit').value);
+      cy.add(e);
+      cy.elements().layout({
+        name: 'cose'
+      })
+    }
+  </script>
+
+</body>
+
+</html>
