@@ -11,8 +11,8 @@ By Omid Alemi
   <script src="graphplanner.js"></script>
   <style>
     #grapharea {
-      width: 90%;
-      height: 90%;
+      width: 100%;
+      height: 100%;
       display: block;
     }
 
@@ -40,6 +40,54 @@ text {
 }
 
   </style>
+
+<style>
+
+.node {
+  font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  fill: #bbb;
+}
+
+.node:hover {
+  fill: #000;
+}
+
+.link {
+  stroke: steelblue;
+  stroke-opacity: .4;
+  fill: none;
+  pointer-events: none;
+}
+
+.node:hover,
+.node--source,
+.node--target {
+  font-weight: 700;
+}
+
+.node--source {
+  fill: #2ca02c;
+}
+
+.node--target {
+  fill: #d62728;
+}
+
+.link--source,
+.link--target {
+  stroke-opacity: 1;
+  stroke-width: 2px;
+}
+
+.link--source {
+  stroke: #d62728;
+}
+
+.link--target {
+  stroke: #2ca02c;
+}
+
+</style>
 
 </head>
 
