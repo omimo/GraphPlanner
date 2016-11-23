@@ -1,0 +1,58 @@
+<html>
+<!-- Graph Planner
+Something to disentangle things! 
+By Omid Alemi
+-->
+
+<head>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <!--<script src="https://d3js.org/d3-dsv.v1.min.js"></script>-->
+  <!--<script src="https://d3js.org/d3-force.v1.min.js"></script>-->
+  <script src="graphplanner.js"></script>
+  <style>
+    #grapharea {
+      width: 90%;
+      height: 90%;
+      display: block;
+    }
+
+.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+.arrow {
+  fill: #333333;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+.node rect {
+  fill: #ccc;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+text {
+  font: 14px sans-serif;
+  pointer-events: none;
+}
+
+  </style>
+
+</head>
+
+
+<body>
+  <div id="grapharea">
+  </div>  
+
+  <script>
+  init();
+    (function() {
+        init();
+    })
+  </script>
+</body>
+</html>
